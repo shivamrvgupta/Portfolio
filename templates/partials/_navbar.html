@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav m-auto">
+            <ul class="navbar-nav ml-auto">
             <li 
                 {% if '/' == request.path %}
                     class="nav-item active mr-3"
@@ -47,10 +47,20 @@
                 >
                     <a class="nav-link" href="{% url 'jobs' %}">
                     Jobs</a>
-                </li>
-            </ul>
-            
-        </div>
+                </li> 
+                <li
+                {% if 'resume' in request.path %}
+                    class="nav-item active mr-3"
+                {% else %}
+                    class="nav-item  mr-3"    
+                {% endif %}
+            >
+            <a
+              class="nav-link"  href="{% static 'Resume.pdf' %}"
+            >
+                Resume</a
+            >
+            </li>
         </div>
     </nav>
     
