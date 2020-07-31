@@ -1,0 +1,14 @@
+<title>Portfolio | Admin Pannel</title>
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+    <h1 id="header">
+        <a href="{% url 'index' %}">
+            Portfolio Admin area
+        <a>
+    </h1> 
+{% endblock %}
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock  %}

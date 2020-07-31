@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+| HOME
+{% endblock title %}
+{% block content %}
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Hi, I am Shivam</h1>
+      <p class="lead text-muted">Hey, I am Shivam Gupta </br> I love to make Django web applications </br> It's the thrill of handling the requests that people want!</p>
+      <p>
+        <a href="mailto:shivamrvgupta@gmail.com" class="btn btn-secondary my-2">Email Me</a>
+      </p>
+    </div>
+</section>
+<section>
+  {% if jobs %}
+    <div class="container">
+      <hr>
+      <h1 class="text-center" >My Works</h1>
+      <hr>
+    </div>
+    {% else %}
+  {% endif %}
+  <div class="album py-5 bg-light">
+    <div class="jumbotron" style="background-color: #f8f9fa;">
+      <div class="container">
+        <div class="row mb-2">
+          {% if jobs %} 
+          {% for job in jobs %}
+          <div class="col-md-6">
+            <div
+              class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+            >
+              <div>
+                <img
+                  src="{{ job.image.url}}"
+                  class="bd-placeholder-img"
+                  width="10%"
+                  height="250"
+                  aria-label="Placeholder: Thumbnail"
+                />
+              </div>
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary"
+                  >{{ job.address }} {{ job.city }},{{ job.zipcode }}</strong
+                >
+                <h3 class="mb-0">{{ job.title }}</h3>
+                <small class="mb-1 text-info">
+                Joining Date :- {{ job.start_date}}
+                </small>
+                <p class="card-text mb-auto">{{ job.body }}</p>
+                <a
+                  href="{% url 'job' job.id %}"
+                  class="btn btn-primary btn-block"
+                  >More Info</a
+                >
+                <div class="mb-1 text-right">
+                  {{ job.created_date| naturaltime}}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %} {% else %}
+          <div class="container">
+            <p class="text-center">Nothing To Show</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  {% if blogs %}
+      <div class="container" >
+        <hr>
+        <h1 class="text-lg-center" >Latest Blogs </h1>
+        <hr>
+      </div>
+    {% else %}
+  {% endif %}
+  <div class="album py-5 bg-light">
+    <div class="jumbotron" style="background-color:#f8f9fa;">
+      <div class="container">
+      <div class="row mb-2">
+      {% if blogs %}
+        {% for blog in blogs %}
+        <div class="col-md-6">
+          <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div>
+              <img src="{{ blog.image_2.url}}" class="bd-placeholder-img"  width="10%" height="250" aria-label="Placeholder: Thumbnail">
+            </div>
+            <div class="col p-4 d-flex flex-column position-static">
+              <strong class="d-inline-block mb-2 text-primary">{{ blog.place }} {{ blog.state }},{{ blog.zipcode }}</strong>
+              <h3 class="mb-0">{{ blog.title }}</h3>
+              <small class="my-2 text-info">
+                {{ blog.created_date }}
+              </small>
+              <p class="card-text mb-auto">{{ blog.body }}</p>
+              <div class="mb-1 text-muted">
+                {{ blog.created_date| naturaltime}}
+              </div>
+              <a href="{% url 'blog' blog.id %}" class="btn btn-primary btn-block">More Info</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+            <div class="container">
+                <p class="text-center">Nothing To Show</p>
+            </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+
+{% endblock  %}

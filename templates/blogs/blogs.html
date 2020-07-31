@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block title%}
+| BLOG {% endblock %} {% block content %}
+<main role="main">
+  <section class="jumbotron text-center" style="background-color: #4a9f8b;">
+    <div class="container">
+      <h1>Hi, I am Shivam</h1>
+      <hr />
+      <p class="lead" style="color: #f8f9fa;">Welcome to my Blog Page</p>
+      <hr />
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index'%}"> <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active">Blogs</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  {% if blogs %}
+  <div class="container">
+    <hr />
+    <h1 class="text-lg-center">Latest Blogs</h1>
+    <hr />
+  </div>
+  {% else %} {% endif %}
+  <div class="album py-5 bg-light">
+    <div class="jumbotron" style="background-color: #f8f9fa;">
+      <div class="container">
+        <div class="row mb-2">
+          {% if blogs %} {% for blog in blogs %}
+          <div class="col-md-6">
+            <div
+              class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
+            >
+              <div>
+                <img
+                  src="{{ blog.image.url}}"
+                  class="bd-placeholder-img"
+                  width="10%"
+                  height="250"
+                  aria-label="Placeholder: Thumbnail"
+                />
+              </div>
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary"
+                  >{{ blog.place }} {{ blog.state }},{{ blog.zipcode }}</strong
+                >
+                <h3 class="mb-0">{{ blog.title }}</h3>
+                <div class="mb-1 text-info">
+                  {{ blog.pub_date}}
+                </div>
+                <p class="card-text mb-auto">{{ blog.body }}</p>
+                <div class="mb-1 text-muted">
+                  {{ blog.created_date| naturaltime}}
+                </div>
+                <a
+                  href="{% url 'blog' blog.id %}"
+                  class="btn btn-primary btn-block"
+                  >More Info</a
+                >
+              </div>
+            </div>
+          </div>
+          {% endfor %} {% else %}
+          <div class="container">
+            <p class="text-center">Nothing To Show</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

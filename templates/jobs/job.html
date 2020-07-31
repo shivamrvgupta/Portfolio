@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+| {{ job.title}}
+{% endblock title %}
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4"> {{ job.title }} </h1>
+          <p class="lead">
+            <i class="fas fa-map-marker"></i> {{ job.address }} {{ job.city }}, {{ job.zipcode }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'jobs' %}">jobs</a>
+          </li>
+          <li class="breadcrumb-item active">{{ job.title }}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+  <!-- Listing -->
+  <section id="listing" class="py-4">
+    <div class="container">
+      <a href="{% url 'jobs' %}" class="btn btn-primary mb-4">Back To jobs</a>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Home Main Image -->
+          <img src={{ job.image.url }} alt="" class="img-main img-fluid mb-3">
+          <!-- Thumbnails -->
+          <div class="row mb-5 thumbs">
+          {% if job.image_1 %}
+            <div class="col-md-2">
+              <a href="{{ job.image_1.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_1.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+          {% endif %}
+          {% if job.image_2 %}  
+            <div class="col-md-2">
+              <a href="{{ job.image_2.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_2.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          {% if job.image_3 %}
+            <div class="col-md-2">
+              <a href="{{ job.image_3.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_3.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          {% if job.image_4 %}
+            <div class="col-md-2">
+              <a href="{{ job.image_4.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_4.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          {% if job.image_5 %}
+            <div class="col-md-2">
+              <a href="{{ job.image_5.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_5.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          {% if job.image_6 %}
+            <div class="col-md-2">
+              <a href="{{ job.image_6.url }}" data-lightbox="home-images">
+                <img src="{{ job.image_6.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          </div>
+                        <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">{{ job.address }} {{ job.city }}, {{ job.zipcode }}</strong>
+                <h3 class="mb-0">{{ job.title}}</h3>
+                <p class="card-text mb-auto">{{ job.summary }}</p>
+                <div class="row py-2 text-secondary">
+                <div class="col-6">
+                    <i class="fas fa-user"></i> Shivam </div>
+                </div>
+                <div class="row text-secondary pb-2">
+                  <div class="col-6">
+                    <i class="fas fa-clock"></i>{{job.start_date}}</div>
+                </div>
+
+                <div class="fas fa-certificate align-middle">
+                  <a href="{% static 'certificate.pdf' %}"> My Certificate</a>
+                </div>
+              </div>
+              </div>
+            </section>
+{% endblock %}              
