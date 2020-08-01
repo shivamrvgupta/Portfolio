@@ -11,13 +11,14 @@
     <div class="container">
       <h1>Hi, I am Shivam</h1>
       <p class="lead text-muted">Hey, I am Shivam Gupta </br> I love to make Django web applications </br> It's the thrill of handling the requests that people want!</p>
-      ​<picture>
-        <img src="{% static 'img/mark.jpg' %}" class="img-fluid img-thumbnail" alt="...">
-      </picture>
       <p>
         <a href="mailto:shivamrvgupta@gmail.com" class="btn btn-secondary my-2">Email Me</a>
       </p>
-    </div>
+      <img
+        class="img-thumbnail"
+        src="{% static 'img/kyle.jpg' %}"
+      />
+      </div>
 </section>
 <section>
   {% if jobs %}
@@ -38,7 +39,7 @@
             <div
               class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
             >
-              <div>
+            <div>
                 <img
                   src="{{ job.image.url}}"
                   class="bd-placeholder-img"
