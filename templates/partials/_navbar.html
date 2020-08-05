@@ -48,13 +48,7 @@
                     <a class="nav-link" href="{% url 'jobs' %}">
                     Jobs</a>
                 </li> 
-                <li
-                {% if 'resume' in request.path %}
-                    class="nav-item active mr-3"
-                {% else %}
-                    class="nav-item  mr-3"    
-                {% endif %}
-            >
+                <li class="nav-item  mr-3">
             <a
               class="nav-link"  href="{% static 'Resume.pdf' %}"
             >
